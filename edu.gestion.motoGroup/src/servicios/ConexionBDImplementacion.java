@@ -14,7 +14,7 @@ import controladores.Inicio;
 public class ConexionBDImplementacion implements ConexionBDInterfaz {
 
 	// URL de conexión a la base de datos
-	private static final String URL = "jdbc:postgresql://localhost:5432/postgres"; 
+	private static final String URL = "jdbc:postgresql://localhost:5432/gestionmotos"; 
 
 	private static final String USER = "postgres";
 
@@ -38,7 +38,7 @@ public class ConexionBDImplementacion implements ConexionBDInterfaz {
 
             
 
-            // Crear la consulta SQL
+            /*// Crear la consulta SQL
 
             String consultaSQL = "SELECT * FROM tablaprueba";
 
@@ -64,15 +64,15 @@ public class ConexionBDImplementacion implements ConexionBDInterfaz {
 
                 System.out.println("ID: " + id + ", Nombre: " + nombre);
 
-            }
+            }*/
 
             
 
             // Cerrar recursos
 
-            resultado.close();
+            //resultado.close();
 
-            preparedStatement.close(); 
+           // preparedStatement.close(); 
 		}catch(SQLException sqle) {
 			System.out.println("Error al conectar con la base de datos");
 		}catch (ClassNotFoundException e) {
