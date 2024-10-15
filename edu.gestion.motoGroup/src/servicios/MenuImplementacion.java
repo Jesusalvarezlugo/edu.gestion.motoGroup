@@ -15,7 +15,7 @@ public class MenuImplementacion implements MenuInterfaz {
 		System.out.println("########################");
 		System.out.println("0. Salir de la aplicacion");
 		System.out.println("1. Dar alta usuario");
-		System.out.println("2.");
+		System.out.println("2. Dar de alta un club");
 		System.out.println("#########################");
 		System.out.println("elija una opcion: ");
 		opcion=Inicio.sc.nextInt();

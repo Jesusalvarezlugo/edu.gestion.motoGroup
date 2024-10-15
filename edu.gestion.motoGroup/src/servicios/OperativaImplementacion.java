@@ -1,28 +1,34 @@
 package servicios;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import controladores.Inicio;
+import dtos.ClubDto;
 import dtos.UsuarioDto;
 
+/**
+ * Clase que contiene la operativa de la aplicación
+ * 09102024
+ * @author jalvugo
+ */
 public class OperativaImplementacion implements OperativaInterfaz {
 
+	ConexionBDInterfaz ci = new ConexionBDImplementacion();
 	@Override
 	public void darAltaUsuario() {
 		
 		UsuarioDto usuarioNuevo=nuevoUsuario();
-		ConexionBDInterfaz ci = new ConexionBDImplementacion();
+		
 		ConsultasBDInterfaz consulta = new ConsultasBDImplementacion();
 		try {
 			
 			ci.abrirConexion();
 			
-			consulta.cargaBD();
+			consulta.cargaBDUsuario();
 			
-			String insertarDatos="INSERT INTO sus.usuario (id_usuario, Usu_nombre,Usu_apellidos,Dni_usuario,Email_usuario) VALUES (?,?,?,?,?)";	
-			PreparedStatement sentencia = Inicio.conexion.prepareStatement(insertarDatos);
+			String insertarDatosUsu="INSERT INTO sus.usuario (id_usuario, Usu_nombre,Usu_apellidos,Dni_usuario,Email_usuario) VALUES (?,?,?,?,?)";	
+			PreparedStatement sentencia = ci.abrirConexion().prepareStatement(insertarDatosUsu);
 			
 			sentencia.setLong(1, usuarioNuevo.getIdUsuario());
 			sentencia.setString(2,usuarioNuevo.getNombreUsuario());
@@ -69,6 +75,13 @@ public class OperativaImplementacion implements OperativaInterfaz {
 		return usuario;
 	}
 	
+	/**
+	 * Método para generar un id automaticamente
+	 * 09102024
+	 * @author jalvugo
+	 * @return el id según cuantos usuarios haya.
+	 */
+	
 	private long autoId() {
 		long idNuevo;
 		int tamanioLista=Inicio.listaUsuarios.size();
@@ -80,6 +93,69 @@ public class OperativaImplementacion implements OperativaInterfaz {
 		}
 		
 		return idNuevo;
+	}
+
+	@Override
+	public void darAltaClub() {
+		
+		ClubDto clubNuevo = nuevoClub();
+		
+		ConsultasBDInterfaz consultaInter= new ConsultasBDImplementacion();
+		
+		try {
+			ci.abrirConexion();
+			
+			consultaInter.cargaBDClub();
+			
+			String insertarDatosClub = "INSERT INTO sus.club (id_club,nombre_club,miembros,sede) VALUES (?,?,?,?)";
+			PreparedStatement sentencia = ci.abrirConexion().prepareStatement(insertarDatosClub);
+			
+			sentencia.setLong(1, clubNuevo.getIdClub());
+			sentencia.setString(2, clubNuevo.getNombreClub());
+			sentencia.setInt(3, clubNuevo.getMiembrosClub());
+			sentencia.setString(4, clubNuevo.getSede());
+			
+		}catch(SQLException exception) {
+			System.out.println("Error al insertar datos"+exception.getMessage());
+		}finally {
+			ci.cerrarConexion();
+		}
+		
+		Inicio.listaClubes.add(clubNuevo);
+		
+		
+		
+	}
+	
+	private ClubDto nuevoClub() {
+		
+		ClubDto clubNuevo = new ClubDto();
+		
+		System.out.println("Introduce el nombre del club:");
+		clubNuevo.setNombreClub(Inicio.sc.next());
+		System.out.println("Introduce el numero de miembros que tiene: ");
+		clubNuevo.setMiembrosClub(Inicio.sc.nextInt());
+		System.out.println("Introduce la direccion de la sede del club: ");
+		clubNuevo.setSede(Inicio.sc.next());
+		clubNuevo.setIdClub(autoIdClub());
+		
+		return clubNuevo;
+	}
+	
+	
+	private long autoIdClub() {
+		long nuevoId;
+		int tamanioLista = Inicio.listaClubes.size();
+		
+		if(tamanioLista>0) {
+			
+			nuevoId = Inicio.listaClubes.get(tamanioLista - 1).getIdClub() + 1;
+		}else {
+			
+			nuevoId=1;
+		}
+		
+		return nuevoId;
 	}
 	
 	

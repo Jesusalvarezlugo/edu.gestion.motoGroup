@@ -1,6 +1,7 @@
 package servicios;
 
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,60 +20,28 @@ public class ConexionBDImplementacion implements ConexionBDInterfaz {
 	private static final String USER = "postgres";
 
 	private static final String PASSWORD = "altair006";
+	Connection conexion = null;
 	@Override
-	public void abrirConexion() {
+	public Connection abrirConexion() {
 		
 		try {
 			// Cargar el controlador JDBC de PostgreSQL
 			//Connection conexion = null;
-			
+			 
             Class.forName("org.postgresql.Driver");
 
             
 
             // Conectar a la base de datos
 
-            Inicio.conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+            conexion = DriverManager.getConnection(URL, USER, PASSWORD);
 
             System.out.println("Conexión exitosa a la base de datos.");
-
+            
+            
             
 
-            /*// Crear la consulta SQL
-
-            String consultaSQL = "SELECT * FROM tablaprueba";
-
-            PreparedStatement preparedStatement = Inicio.conexion.prepareStatement(consultaSQL);
-
             
-
-            // Ejecutar la consulta
-
-            ResultSet resultado = preparedStatement.executeQuery();
-
-            
-
-            // Recorrer los resultados
-
-            while (resultado.next()) {
-
-                // Obtener datos de las columnas (ejemplo con columnas "id" y "nombre")
-
-                int id = resultado.getInt("id");
-
-                String nombre = resultado.getString("nombre");
-
-                System.out.println("ID: " + id + ", Nombre: " + nombre);
-
-            }*/
-
-            
-
-            // Cerrar recursos
-
-            //resultado.close();
-
-           // preparedStatement.close(); 
 		}catch(SQLException sqle) {
 			System.out.println("Error al conectar con la base de datos");
 		}catch (ClassNotFoundException e) {
@@ -82,16 +51,18 @@ public class ConexionBDImplementacion implements ConexionBDInterfaz {
             e.printStackTrace();
 		}
 		
+		return conexion;
+		
 	}
 
 	@Override
 	public void cerrarConexion() {
 		
-		 if (Inicio.conexion != null) {
+		 if (conexion != null) {
 
              try {
 
-                 Inicio.conexion.close();
+                 conexion.close();
 
                  System.out.println("Conexión cerrada.");
 

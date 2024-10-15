@@ -7,5 +7,17 @@ package servicios;
  */
 public interface OperativaInterfaz {
 
+	/**
+	 * Método para dar de alta un usuario
+	 * 09102024
+	 * @author jalvugo
+	 */
 	public void darAltaUsuario();
+	
+	/**
+	 * Método para dar de alta un club
+	 * 09102024
+	 * @author jalvugo
+	 */
+	public void darAltaClub();
 }

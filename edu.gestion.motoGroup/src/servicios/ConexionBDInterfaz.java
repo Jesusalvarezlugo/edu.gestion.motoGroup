@@ -1,8 +1,10 @@
 package servicios;
 
+import java.sql.Connection;
+
 public interface ConexionBDInterfaz {
 	
-	public void abrirConexion();
+	public Connection abrirConexion();
 	
 	public void cerrarConexion();
 
