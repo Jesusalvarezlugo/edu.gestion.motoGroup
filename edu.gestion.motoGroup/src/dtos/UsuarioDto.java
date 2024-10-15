@@ -4,6 +4,7 @@ public class UsuarioDto {
 	
 	//Atributos
 	
+	
 	long idUsuario;
 	String nombreUsuario="aaaaa";
 	String apellidosUsuario="aaaaa";
@@ -48,6 +49,12 @@ public class UsuarioDto {
 	}
 	public void setIdClub(long idClub) {
 		this.idClub = idClub;
+	}
+	
+	@Override
+	public String toString() {
+		return "UsuarioDto [nombreUsuario=" + nombreUsuario + ", apellidosUsuario=" + apellidosUsuario + ", dniUsuario="
+				+ dniUsuario + "]";
 	}
 
 }

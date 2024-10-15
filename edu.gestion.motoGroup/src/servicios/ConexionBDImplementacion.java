@@ -26,7 +26,7 @@ public class ConexionBDImplementacion implements ConexionBDInterfaz {
 		
 		try {
 			// Cargar el controlador JDBC de PostgreSQL
-			//Connection conexion = null;
+			
 			 
             Class.forName("org.postgresql.Driver");
 

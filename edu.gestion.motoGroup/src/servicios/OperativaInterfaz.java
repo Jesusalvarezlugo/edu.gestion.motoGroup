@@ -20,4 +20,12 @@ public interface OperativaInterfaz {
 	 * @author jalvugo
 	 */
 	public void darAltaClub();
+	
+	/**
+	 * Método para la baja del usuario
+	 * 150102024
+	 * @author jalvugo
+	 */
+	
+	public void bajaUsuario();
 }

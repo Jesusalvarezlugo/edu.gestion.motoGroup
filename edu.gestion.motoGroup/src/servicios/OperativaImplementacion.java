@@ -17,15 +17,16 @@ public class OperativaImplementacion implements OperativaInterfaz {
 	ConexionBDInterfaz ci = new ConexionBDImplementacion();
 	@Override
 	public void darAltaUsuario() {
-		
-		UsuarioDto usuarioNuevo=nuevoUsuario();
-		
 		ConsultasBDInterfaz consulta = new ConsultasBDImplementacion();
+		consulta.cargaBDUsuario();
+		UsuarioDto usuarioNuevo= nuevoUsuario();
+		
+		
 		try {
 			
 			ci.abrirConexion();
 			
-			consulta.cargaBDUsuario();
+			
 			
 			String insertarDatosUsu="INSERT INTO sus.usuario (id_usuario, Usu_nombre,Usu_apellidos,Dni_usuario,Email_usuario) VALUES (?,?,?,?,?)";	
 			PreparedStatement sentencia = ci.abrirConexion().prepareStatement(insertarDatosUsu);
@@ -97,15 +98,16 @@ public class OperativaImplementacion implements OperativaInterfaz {
 
 	@Override
 	public void darAltaClub() {
-		
+		ConsultasBDInterfaz consultaInter= new ConsultasBDImplementacion();
+		consultaInter.cargaBDClub();
 		ClubDto clubNuevo = nuevoClub();
 		
-		ConsultasBDInterfaz consultaInter= new ConsultasBDImplementacion();
+		
 		
 		try {
 			ci.abrirConexion();
 			
-			consultaInter.cargaBDClub();
+			
 			
 			String insertarDatosClub = "INSERT INTO sus.club (id_club,nombre_club,miembros,sede) VALUES (?,?,?,?)";
 			PreparedStatement sentencia = ci.abrirConexion().prepareStatement(insertarDatosClub);
@@ -156,6 +158,20 @@ public class OperativaImplementacion implements OperativaInterfaz {
 		}
 		
 		return nuevoId;
+	}
+
+	@Override
+	public void bajaUsuario() {
+		
+		String dniAPedir;
+		for(UsuarioDto usuario:Inicio.listaUsuarios) {
+			System.out.println(usuario.toString());
+		}
+		System.out.println("Introduzca el dni del usuario que desee eliminar: ");
+		dniAPedir=Inicio.sc.next();
+		
+		
+		
 	}
 	
 	

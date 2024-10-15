@@ -53,6 +53,7 @@ public class Inicio {
         			 
         		 case 2:
         			 System.out.println("Se dara de alta un nuevo club.");
+        			 oi.darAltaClub();
         			 break;
         		 }
         		 

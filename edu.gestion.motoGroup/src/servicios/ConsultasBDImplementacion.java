@@ -24,16 +24,16 @@ public class ConsultasBDImplementacion implements ConsultasBDInterfaz {
 			conexion = ci.abrirConexion();
 			
 			sentencia = conexion.createStatement();
-			ResultSet resultado = sentencia.executeQuery("SELECT * FROM usuario");
+			ResultSet resultado = sentencia.executeQuery(" SELECT * FROM sus.usuario ");
 			
 			while(resultado.next()) {
 				UsuarioDto usuario = new UsuarioDto();
 				
-				usuario.setIdUsuario(resultado.getLong(0));
-				usuario.setNombreUsuario(resultado.getString(1));
-				usuario.setApellidosUsuario(resultado.getString(2));
-				usuario.setDniUsuario(resultado.getString(3));
-				usuario.setEmailUsuario(resultado.getString(4));
+				usuario.setIdUsuario(resultado.getLong(1));
+				usuario.setNombreUsuario(resultado.getString(2));
+				usuario.setApellidosUsuario(resultado.getString(3));
+				usuario.setDniUsuario(resultado.getString(4));
+				usuario.setEmailUsuario(resultado.getString(5));
 				
 				Inicio.listaUsuarios.add(usuario);
 			}
@@ -41,7 +41,7 @@ public class ConsultasBDImplementacion implements ConsultasBDInterfaz {
 			
 			
 		}catch(SQLException eU) {
-			System.out.println("Error al hacer la carga inicial de usuarios"+eU.getMessage());
+			System.out.println("Error al hacer la carga inicial de usuarios "+eU.getMessage());
 		}finally {
 			
 			ci.cerrarConexion();
