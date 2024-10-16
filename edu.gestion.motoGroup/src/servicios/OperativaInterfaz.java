@@ -23,7 +23,7 @@ public interface OperativaInterfaz {
 	
 	/**
 	 * Método para la baja del usuario
-	 * 150102024
+	 * 160102024
 	 * @author jalvugo
 	 */
 	

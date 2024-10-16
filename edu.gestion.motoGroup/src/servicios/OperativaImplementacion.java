@@ -163,12 +163,18 @@ public class OperativaImplementacion implements OperativaInterfaz {
 	@Override
 	public void bajaUsuario() {
 		
+		UsuarioDto usuarioAEliminar = new UsuarioDto();
 		String dniAPedir;
 		for(UsuarioDto usuario:Inicio.listaUsuarios) {
 			System.out.println(usuario.toString());
 		}
 		System.out.println("Introduzca el dni del usuario que desee eliminar: ");
 		dniAPedir=Inicio.sc.next();
+		
+		for(UsuarioDto usuario:Inicio.listaUsuarios) {
+			
+			
+		}
 		
 		
 		
