@@ -55,6 +55,11 @@ public class Inicio {
         			 System.out.println("Se dara de alta un nuevo club.");
         			 oi.darAltaClub();
         			 break;
+        			 
+        		 case 3:
+        			 System.out.println("Se eliminara un usuario.");
+        			 oi.bajaUsuario();
+        			 break;
         		 }
         		 
         	 }catch(Exception e) {

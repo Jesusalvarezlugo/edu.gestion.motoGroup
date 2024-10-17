@@ -28,4 +28,19 @@ public interface OperativaInterfaz {
 	 */
 	
 	public void bajaUsuario();
+	
+	/**
+	 * Método para la baja del club
+	 * 17102024
+	 * @author jalvugo
+	 */
+	
+	public void bajaClub();
+	
+	/**
+	 * Método para modificar un campo del usuario
+	 * 17102024
+	 * @author jalvugo
+	 */
+	public void modificarUsuario();
 }
