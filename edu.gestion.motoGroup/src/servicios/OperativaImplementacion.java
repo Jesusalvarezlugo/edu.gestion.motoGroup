@@ -1,8 +1,10 @@
 package servicios;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import controladores.Inicio;
 import dtos.ClubDto;
@@ -285,6 +287,8 @@ public class OperativaImplementacion implements OperativaInterfaz {
 				opcionCampo=mi.mostrarMenuYSeleccionCampos();
 				
 				try {
+					Connection conexion = ci.abrirConexion();
+					Statement sentencia = conexion.createStatement();
 					ResultSet resultado = ci.abrirConexion().createStatement().executeQuery("SELECT * FROM sus.usuario WHERE dni_usuario = ?");
 					PreparedStatement parmSel;
 				    
